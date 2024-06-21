@@ -101,53 +101,60 @@ In this analysis we focus on proving the rearing behavior at the beacon.
 <!-- Data Description -->
 ## Data description
 
-During an experimental session 3 files are generated.
+During an experimental session 4 files are generated. Each is a text file and contains columns seperated by space. 
 
 position datetime.txt (rotation in quaternion coordinates):
 
-| Time     | X rat | Z rat | Y rat | X rotation_rat | Y rotation_rat| Z rotation_rat | Motive Frame|Motive timestamp|Motive session timestamp|
+The coordinates are established in the experimental room. When entering the room facing away from the door, X position would be to the right and left of the door (short wall of the arena). The rotation around this axis would be the pitch of the animal. The Z Position is then the second column taken as up and down in height in the room coordinates and the respective rotation around this is the yaw of the animal. With the last position axis the Y rat position would be going futher into the room axis (long arena wall). Hence the rotation around this axis would be the roll of the animal.
+
+
+| Time     | X rat | Z rat (height) | Y rat |  rotation_around Y (roll) | rotation_around Z (yaw) | rotation_around X (pitch)| Motive Frame|Motive timestamp|Motive session timestamp|
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 
+beacons_entry.txt (historical): Denotes each time the rat entered the beacon and keeps track of the animal untill it exits and records the amount of time the animal spent in the beacon.
 
-beacons datetime.txt:
+ | Time     | X rat | Z rat (height) | Y rat | X beacon | Y beacon| time in beacon|
+ | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |----------- |
+ 
+beacons datetime.txt: Record the trigger of the beacon by the rat.
 
- | Time     | X rat | Z rat | Y rat | X beacon | Y beacon|
+ | Time     | X rat | Z rat (height) | Y rat | X beacon | Y beacon|
  | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 
-metadata datetime.txt :  Example described
+metadata date - time.txt :  Example described
 
 
 
 
 |Recording started on :| 2021-11-15 16:04:08  |
 | ------------- | ----------- |
-Computer time was : |1636988648.44  
-ITI_time : |1.5   # time after beacon that beacon is inactive (animal cannot just stand there getting beacons, needs to leave
-time_in_cylinder : |60  # required time for animal to stay in beacon - not rearing
+Computer time was : |1636988648.44  s
+ITI_time : |1.5   # (s) time after beacon that beacon is inactive (animal cannot just stand there getting beacons, needs to leave
+time_in_cylinder : |60  # (s) required time for animal to stay in beacon - if high number, animal needs ot rear for trigger
 movement_collection_time :| 0.01  # getting position data supposedly at 100hz.
 animal_ID : |FS11  
 background_color : |000   # just black color on the background
-circle : |0.075  #radius of visible beacon presented
+circle : |0.075  # (m) radius of visible beacon presented
 position_change : |10  # how many beacons till position changes
-light_off : |2  # how many beacons till beacon is invisible 
+light_off : |2  # how many beacons till beacon is invisible. If high number = training (always visible)- if 2 evryo toher time invisible
 Cylinder_color : |grass.png  
 rotation : |80  #rotation speed for visual perturbation
-Pellets : |96   #achieved durign task
-Beacon : |217.640997887 # time spent in beacon
-Sham : |104.490000248 # time spent in beacon which is in different place and never visible.
+Pellets : |96   # rewards or trials achieved durign task
+Beacon : |217.640997887 # (s) time spent in beacon
+Sham : |104.490000248 # (s) time spent in beacon which is in different place and never visible.
 Distance : |498.117148451  # in meters
 Speed : |31.793808940176444 # cm/s
-recording lenght : |1892.398 #in seconds
+recording lenght : |1892.398 # (s)
 high pellets : |95  # how many pellets were achieved by standing
-high_time_in_cylinder : |0.5 # for how long animal has to rear in cylinder to count.
-invisible_time : |60 #how long does animal get before beacon becomes visible (s)
+high_time_in_cylinder : |0.5 # (s) for how long animal has to rear in cylinder to count.
+invisible_time : |60 # (s) how long does animal has before beacon becomes visible (time to achieve trial) 
 invisible_count : |38 # how many invisible beacons animal achieved
-invisible_list : |[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 23, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 61, 65, 67, 71, 73, 75, 77, 83, 85, 87, 89, 93, 95]  # which beacon number were the invisible ones - later or earlier on?
+invisible_list : |[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 23, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 61, 65, 67, 71, 73, 75, 77, 83, 85, 87, 89, 93, 95]  # which beacon number were the invisible ones.
 Animal jumped : |-1  # how many times did the animal jump?
-Recording_started_motive : |0  # ephys frame number
-Recording_timestamp_motive : |0.0 # ephys timestamp
+Recording_started_motive : |0  # Motive - ephys frame number
+Recording_timestamp_motive : |0.0 # Motive ephys timestamp
 Day : |157 # Which script
-invisible circle : |0.15  #how large is the invisible beacon area
+invisible circle : |0.15  #(m)how large is the invisible beacon area
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
